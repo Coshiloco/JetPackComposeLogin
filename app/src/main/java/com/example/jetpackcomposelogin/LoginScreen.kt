@@ -2,6 +2,7 @@ package com.example.jetpackcomposelogin
 
 import android.app.Activity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,6 +35,33 @@ fun LoginScreen() {
     ) {
         Header(Modifier.align(Alignment.TopEnd))
         Body(Modifier.align(Alignment.Center))
+        Footer(Modifier.align(Alignment.BottomCenter))
+    }
+}
+
+@Composable
+fun Footer(modifier: Modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Divider(
+            Modifier
+                .background(Color(0xFFF9F9F9))
+                .height(1.dp)
+                .fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.size(32.dp))
+        SingUP()
+        Spacer(modifier = Modifier.size(32.dp))
+    }
+}
+
+@Composable
+fun SingUP() {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Text("Don't have an account", fontSize = 12.sp,
+        color = Color(0xFFB5B5B5))
+        Text("Sing up", modifier = Modifier.padding(horizontal = 8.dp), fontSize = 12.sp,
+        fontWeight = FontWeight.Bold,
+        color = Color(0xFF4EA8E9))
     }
 }
 
@@ -54,19 +82,66 @@ fun Body(modifier: Modifier) {
             Modifier.align(Alignment.Start)
         )
         Spacer(modifier = Modifier.size(8.dp))
-        Password(password = password, onTextChanged = { password = it }, Modifier.align(Alignment.End))
+        Password(
+            password = password,
+            onTextChanged = { password = it },
+            Modifier.align(Alignment.End)
+        )
         Spacer(modifier = Modifier.size(8.dp))
         ForgotPassword(Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.size(18.dp))
         LoginButton(isLoginEnable)
         Spacer(modifier = Modifier.size(16.dp))
         LoginDivider()
+        Spacer(modifier = Modifier.size(32.dp))
+        SocialLogin()
+    }
+}
+
+@Composable
+fun SocialLogin() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.fb), contentDescription = "Social login fb",
+            modifier = Modifier.size(16.dp)
+        )
+        Text(
+            "Continue con su oreja",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 8.dp),
+            color = Color(0xFF4EA8E9)
+        )
     }
 }
 
 @Composable
 fun LoginDivider() {
-    
+    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Divider(
+            Modifier
+                .background(Color(0xFFF9F9F9))
+                .height(1.dp)
+                .weight(1f)
+        )
+        Text(
+            "OR",
+            modifier = Modifier.padding(horizontal = 18.dp),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFFB5B5B5)
+        )
+        Divider(
+            Modifier
+                .background(Color(0xFFF9F9F9))
+                .height(1.dp)
+                .weight(1f)
+        )
+    }
 }
 
 @Composable
